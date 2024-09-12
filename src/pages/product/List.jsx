@@ -1,13 +1,16 @@
 import { Button, Stack } from '@mui/material'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { axiosInstance } from '../../config/axiosInstance'
 import { enqueueSnackbar } from 'notistack'
 import { useNavigate } from 'react-router-dom'
+import { FavoritesContext } from '../../context/FavoritesContext'
 
 function List() {
 
     const [products, setproducts] = useState([])
+
+    const { favOperation, favorites } = useContext(FavoritesContext)
 
     const navigate = useNavigate()
 
@@ -71,6 +74,22 @@ function List() {
             header: "Detail",
             renderCell: (item) => <><Button onClick={() => navigate(`/products/${item.row.id}`)} variant="contained">Detail</Button></>,
             flex: 1
+        },
+        {
+            field:"Fav",
+            header:"Fav",
+            renderCell:(item) => {
+
+                var itemCheck = favorites.find(q => q.id == item.id)
+                if(itemCheck){
+                    return <Button onClick={() => favOperation(item.row)} variant="contained" color="error">Remove from Fav</Button>
+                }
+                else{
+                    return <Button onClick={() => favOperation(item.row)}  variant="contained" color="primary">Add to Fav</Button>
+                }
+
+            },
+            flex:2
         }
     ]
 
