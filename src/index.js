@@ -4,6 +4,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
 import { FavoritesProvider } from './context/FavoritesContext';
+import './utils/i18n'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

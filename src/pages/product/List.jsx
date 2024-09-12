@@ -5,6 +5,7 @@ import { axiosInstance } from '../../config/axiosInstance'
 import { enqueueSnackbar } from 'notistack'
 import { useNavigate } from 'react-router-dom'
 import { FavoritesContext } from '../../context/FavoritesContext'
+import { useTranslation } from 'react-i18next'
 
 function List() {
 
@@ -13,6 +14,8 @@ function List() {
     const { favOperation, favorites } = useContext(FavoritesContext)
 
     const navigate = useNavigate()
+
+    const { t } = useTranslation()
 
 
     useEffect(() => {
@@ -37,9 +40,6 @@ function List() {
                 })
         }
     }
-
-
-
 
     const columns = [
         {
@@ -66,38 +66,38 @@ function List() {
         {
             field: "Delete",
             headerName: "Delete",
-            renderCell: (item) => <Button onClick={() => deleteProduct(item.row.id)} variant="contained" color="error">Delete</Button>,
+            renderCell: (item) => <Button onClick={() => deleteProduct(item.row.id)} variant="contained" color="error">{t("Delete")}</Button>,
             flex: 1
         },
         {
             field: "Detail",
             header: "Detail",
-            renderCell: (item) => <><Button onClick={() => navigate(`/products/${item.row.id}`)} variant="contained">Detail</Button></>,
+            renderCell: (item) => <><Button onClick={() => navigate(`/products/${item.row.id}`)} variant="contained">{t("Detail")}</Button></>,
             flex: 1
         },
         {
-            field:"Fav",
-            header:"Fav",
-            renderCell:(item) => {
+            field: "Fav",
+            header: "Fav",
+            renderCell: (item) => {
 
                 var itemCheck = favorites.find(q => q.id == item.id)
-                if(itemCheck){
-                    return <Button onClick={() => favOperation(item.row)} variant="contained" color="error">Remove from Fav</Button>
+                if (itemCheck) {
+                    return <Button onClick={() => favOperation(item.row)} variant="contained" color="error">{t("RemoveFromFavorites")}</Button>
                 }
-                else{
-                    return <Button onClick={() => favOperation(item.row)}  variant="contained" color="primary">Add to Fav</Button>
+                else {
+                    return <Button onClick={() => favOperation(item.row)} variant="contained" color="primary">{t("AddToFavorites")}</Button>
                 }
 
             },
-            flex:2
+            flex: 2
         }
     ]
 
 
     return <>
         <Stack direction="row" justifyContent="space-between" alignItems="center">
-            <h1>Products Length: {products.length}</h1>
-            <Button onClick={() => navigate("/products/add")} size="large" variant="contained">Add</Button>
+            <h1>{t("ProductsLength")}: {products.length}</h1>
+            <Button onClick={() => navigate("/products/add")} size="large" variant="contained">{t("Add")}</Button>
         </Stack>
         <div style={{ height: 400 }}>
             <DataGrid
