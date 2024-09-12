@@ -1,4 +1,4 @@
-import { Button } from '@mui/material'
+import { Button, Stack } from '@mui/material'
 import { DataGrid, GridToolbar } from '@mui/x-data-grid'
 import React, { useEffect, useState } from 'react'
 import { axiosInstance } from '../../config/axiosInstance'
@@ -29,11 +29,14 @@ function List() {
         if (confirm) {
             axiosInstance.delete("products/" + id)
                 .then(res => {
-                 enqueueSnackbar("Product deleted", { variant: "success" })
+                    enqueueSnackbar("Product deleted", { variant: "success" })
                     load();
                 })
         }
     }
+
+
+
 
     const columns = [
         {
@@ -64,24 +67,28 @@ function List() {
             flex: 1
         },
         {
-            field:"Detail",
-            header:"Detail",
-            renderCell:(item) => <><Button onClick={() => navigate(`/products/${item.row.id}`)} variant="contained">Detail</Button></>,
-            flex:1
+            field: "Detail",
+            header: "Detail",
+            renderCell: (item) => <><Button onClick={() => navigate(`/products/${item.row.id}`)} variant="contained">Detail</Button></>,
+            flex: 1
         }
     ]
 
 
     return <>
+        <Stack direction="row" justifyContent="space-between" alignItems="center">
+            <h1>Products Length: {products.length}</h1>
+            <Button onClick={() => navigate("/products/add")} size="large" variant="contained">Add</Button>
+        </Stack>
         <div style={{ height: 400 }}>
             <DataGrid
                 rows={products}
                 columns={columns}
                 slots={{ toolbar: GridToolbar }}
                 slotProps={{
-                  toolbar: {
-                    showQuickFilter: true,
-                  },
+                    toolbar: {
+                        showQuickFilter: true,
+                    },
                 }}
             />
         </div>
