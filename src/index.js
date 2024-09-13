@@ -5,14 +5,21 @@ import { BrowserRouter } from 'react-router-dom';
 import { SnackbarProvider } from 'notistack';
 import { FavoritesProvider } from './context/FavoritesContext';
 import './utils/i18n'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const queryClient = new QueryClient()
+
 root.render(
-  <BrowserRouter>
-    <FavoritesProvider>
-      <SnackbarProvider />
-      <App />
-    </FavoritesProvider>
-  </BrowserRouter>
+  <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
+      <FavoritesProvider>
+        <SnackbarProvider />
+        <App />
+      </FavoritesProvider>
+    </BrowserRouter>
+  </QueryClientProvider>
+
 
 );

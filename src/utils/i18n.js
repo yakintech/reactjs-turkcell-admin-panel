@@ -12,7 +12,9 @@ const resources = {
             "Detail": "Detail",
             "Delete": "Delete",
             "RemoveFromFavorites": "Remove from Fav",
-            "AddToFavorites": "Add to Fav"
+            "AddToFavorites": "Add to Fav",
+            "Categories": "Categories",
+            "Suppliers": "Suppliers"
         }
     },
     tr: {
@@ -25,7 +27,9 @@ const resources = {
             "Detail": "Detay",
             "Delete": "Sil",
             "RemoveFromFavorites": "Favorilerden Çıkar",
-            "AddToFavorites": "Favorilere Ekle"
+            "AddToFavorites": "Favorilere Ekle",
+            "Categories": "Kategoriler",
+            "Suppliers": "Tedarikçiler"
         }
     },
     fr: {
@@ -38,7 +42,9 @@ const resources = {
             "Detail": "Détail",
             "Delete": "Effacer",
             "RemoveFromFavorites": "Retirer des favoris",
-            "AddToFavorites": "Ajouter aux favoris"
+            "AddToFavorites": "Ajouter aux favoris",
+            "Categories": "Catégories",
+            "Suppliers":"Fournisseurs"
         }
     }
 };
