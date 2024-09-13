@@ -6,6 +6,7 @@ import { enqueueSnackbar } from 'notistack'
 import { useNavigate } from 'react-router-dom'
 import { FavoritesContext } from '../../context/FavoritesContext'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 
 function List() {
 
@@ -16,6 +17,9 @@ function List() {
     const navigate = useNavigate()
 
     const { t } = useTranslation()
+
+
+    let dispatch = useDispatch()
 
 
     useEffect(() => {
@@ -90,6 +94,19 @@ function List() {
 
             },
             flex: 2
+        },
+        {
+            field:"Cart",
+            headerName:"Cart",
+            renderCell:(item) => {
+                return <>
+                    <Button variant="contained" color="warning" onClick={() => {
+                        enqueueSnackbar("added to cart...", {variant:"success"})
+                        return dispatch({type:"cart/addToCart", payload:item.row})
+                    }}>Add to Cart</Button>
+                </>
+            },
+            flex:2
         }
     ]
 

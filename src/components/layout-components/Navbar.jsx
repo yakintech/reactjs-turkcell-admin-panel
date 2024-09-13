@@ -30,6 +30,16 @@ function Navbar() {
                         {t("Home")}
                     </Typography>
                 </Link>
+                <Link style={{ color: 'white' }} to={"/countersample"}>
+                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                        Counter
+                    </Typography>
+                </Link>
+                <Link style={{ color: 'white' }} to={"/products/cart"}>
+                    <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+                        Cart
+                    </Typography>
+                </Link>
                 <Link style={{ color: 'white' }} to={"/categories"}>
                     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
                         {t("Categories")}

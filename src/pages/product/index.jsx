@@ -4,6 +4,7 @@ import List from './List'
 import Add from './Add'
 import Detail from './Detail'
 import Favorites from './Favorites'
+import Cart from './Cart'
 
 function ProductRoutes() {
   return <>
@@ -12,6 +13,7 @@ function ProductRoutes() {
             <Route path='/add' element={<Add/>}/>
             <Route path='/:id' element={<Detail/>}/>
             <Route path='/favorites' element={<Favorites/>}/>
+            <Route path='/cart' element={<Cart/>} />
         </Routes>
   </>
 }
