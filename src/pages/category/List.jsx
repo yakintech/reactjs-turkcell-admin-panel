@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query'
 import React from 'react'
 import { axiosInstance } from '../../config/axiosInstance'
 import { DataGrid } from '@mui/x-data-grid'
+import { useNavigate } from 'react-router-dom'
+import { Button } from '@mui/material'
 
 function List() {
 
@@ -12,6 +14,8 @@ function List() {
         .then(res => res.data)
     }
   })
+
+  const navigate = useNavigate()
 
   const columns = [
     {
@@ -31,6 +35,10 @@ function List() {
     },
   ]
   return <>
+  <div style={{display:'flex', justifyContent:'flex-end'}}>
+    <Button variant="contained" onClick={() => navigate("/categories/add")}>Add</Button>
+  </div>
+  <hr />
     <div style={{ height: 400 }}>
       <DataGrid
         rows={data}
